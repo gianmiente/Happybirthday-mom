@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gửi mẹ yêu ❤️</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #754b50;
+  background: linear-gradient(145deg, #fff7f1, #f9dfe2, #fff0e6);
+  text-align: center;
+  overflow-x: hidden;
+}
+main {
+  width: min(92%, 600px);
+  margin: auto;
+  padding: 42px 12px 70px;
+}
+h1 { font-size: clamp(28px, 7vw, 42px); }
+.subtitle { line-height: 1.8; }
+.envelope-wrap {
+  margin: 42px auto 25px;
+  width: min(300px, 85vw);
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  perspective: 900px;
+}
+.envelope {
+  position: absolute;
+  inset: 35px 0 0;
+  height: 155px;
+  background: #d88e99;
+  border-radius: 5px;
+  box-shadow: 0 12px 25px #9c596333;
+}
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #efb7bd;
+  clip-path: polygon(0 0, 50% 65%, 100% 0);
+  transform-origin: top;
+  transition: transform .7s;
+  z-index: 3;
+}
+.envelope::after {
+  content: "♥";
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
+  color: #fff7ed;
+  font-size: 32px;
+  z-index: 4;
+}
+.envelope.open::before {
+  transform: rotateX(180deg);
+}
+.letter {
+  position: absolute;
+  left: 8%;
+  width: 84%;
+  bottom: 10px;
+  height: 130px;
+  padding: 18px 10px;
+  background: #fffaf2;
+  border-radius: 5px;
+  line-height: 1.5;
+  transition: transform .8s, height .8s;
+  overflow: hidden;
+  z-index: 2;
+}
+.envelope.open .letter {
+  height: 200px;
+  transform: translateY(-85px);
+}
+button {
+  border: 0;
+  border-radius: 25px;
+  padding: 13px 22px;
+  margin: 8px 4px;
+  font-size: 16px;
+  background: #b96878;
+  color: white;
+  cursor: pointer;
+}
+button:focus-visible {
+  outline: 3px solid #754b50;
+  outline-offset: 3px;
+}
+#fullLetter {
+  display: none;
+  text-align: left;
+  background: #fffaf5eF;
+  border: 1px solid #edc9c9;
+  border-radius: 18px;
+  padding: 24px;
+  margin: 30px auto;
+  line-height: 1.9;
+  white-space: pre-line;
+  animation: appear .7s ease;
+}
+#fullLetter.show { display: block; }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.heart {
+  position: fixed;
+  bottom: -35px;
+  pointer-events: none;
+  animation: floatUp 6s linear forwards;
+  z-index: 10;
+}
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+footer { font-size: 13px; opacity: .75; margin-top: 35px; }
+</style>
+</head>
+<body>
+<main>
+  <p>🌷 Một món quà nhỏ dành riêng cho mẹ 🌷</p>
+  <h1>Chúc mừng sinh nhật mẹ!</h1>
+  <p class="subtitle">
+    Con có một điều muốn nói với mẹ.<br>
+    Mẹ hãy chạm vào chiếc phong bì nha!
+  </p>
+
+  <div class="envelope-wrap" id="envelopeWrap"
+       role="button" tabindex="0"
+       aria-label="Chạm để mở phong bì">
+    <div class="envelope" id="envelope">
+      <div class="letter">Gửi mẹ yêu ❤️<br>Chạm để đọc thư nha...</div>
+    </div>
+  </div>
+
+  <button id="openLetter">Mở thư của con 💌</button>
+  <button id="musicButton">♫ Phát nhạc</button>
+
+  <section id="fullLetter">
+    <h2>Gửi mẹ yêu thương nhất của con ❤️</h2>
+    Mẹ iu,
+
+    Hôm nay là ngày thật đặc biệt, bởi vì đó là ngày mẹ đến với thế giới này.
+
+    Con không biết phải nói bao nhiêu lời mới đủ để cảm ơn mẹ vì tất cả những yêu thương, sự chăm sóc và những điều mẹ đã dành cho con.
+
+    Con chỉ mong mẹ luôn bình an, vui vẻ, mạnh khỏe và có thật nhiều ngày hạnh phúc. Mong rằng những điều tốt đẹp nhất sẽ luôn tìm đến mẹ, giống như cách mẹ đã luôn dành cho con những điều tốt đẹp.
+
+    Cảm ơn mẹ vì đã là mẹ của con.
+
+    Con yêu mẹ rất nhiều!
+
+    <div style="text-align:right">Con của mẹ 💗</div>
+  </section>
+
+  <footer>Được làm bằng tất cả tình yêu dành cho mẹ ♡</footer>
+</main>
+
+<audio id="music" loop preload="none" src="music.mp3"></audio>
+
+<script>
+const envelope = document.getElementById("envelope");
+const wrap = document.getElementById("envelopeWrap");
+const letter = document.getElementById("fullLetter");
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+
+function openEnvelope() {
+  envelope.classList.add("open");
+  letter.classList.add("show");
+  makeHearts(12);
+}
+wrap.addEventListener("click", openEnvelope);
+wrap.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openEnvelope();
+  }
+});
+document.getElementById("openLetter").addEventListener("click", openEnvelope);
+
+function makeHearts(amount) {
+  for (let i = 0; i < amount; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent = ["♥", "♡", "💕", "💗"][Math.floor(Math.random()*4)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    heart.addEventListener("animationend", () => heart.remove());
+  }
+}
+setInterval(() => makeHearts(2), 1800);
+
+musicButton.addEventListener("click", async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = "Ⅱ Tạm dừng nhạc";
+    } catch {
+      alert("Bạn hãy thêm tệp nhạc music.mp3 vào repository trước nhé.");
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = "♫ Phát nhạc";
+  }
+});
+</script>
+</body>
+</html>
