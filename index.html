@@ -2,217 +2,257 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gửi mẹ yêu ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi mẹ — một món quà nhỏ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, "Times New Roman", serif;
-  color: #754b50;
-  background: linear-gradient(145deg, #fff7f1, #f9dfe2, #fff0e6);
-  text-align: center;
-  overflow-x: hidden;
+:root {
+  --paper:#F7F3EA;
+  --green:#667C69;
+  --coffee:#75604F;
+  --butter:#E8D9A8;
+  --white:#FFFFFF;
+  --deep:#465B49;
 }
-main {
-  width: min(92%, 600px);
-  margin: auto;
-  padding: 42px 12px 70px;
-}
-h1 { font-size: clamp(28px, 7vw, 42px); }
-.subtitle { line-height: 1.8; }
-.envelope-wrap {
-  margin: 42px auto 25px;
-  width: min(300px, 85vw);
-  height: 200px;
-  position: relative;
-  cursor: pointer;
-  perspective: 900px;
-}
-.envelope {
-  position: absolute;
-  inset: 35px 0 0;
-  height: 155px;
-  background: #d88e99;
-  border-radius: 5px;
-  box-shadow: 0 12px 25px #9c596333;
-}
-.envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #efb7bd;
-  clip-path: polygon(0 0, 50% 65%, 100% 0);
-  transform-origin: top;
-  transition: transform .7s;
-  z-index: 3;
-}
-.envelope::after {
-  content: "♥";
-  position: absolute;
-  top: 48px;
-  left: 0;
-  right: 0;
-  color: #fff7ed;
-  font-size: 32px;
-  z-index: 4;
-}
-.envelope.open::before {
-  transform: rotateX(180deg);
-}
-.letter {
-  position: absolute;
-  left: 8%;
-  width: 84%;
-  bottom: 10px;
-  height: 130px;
-  padding: 18px 10px;
-  background: #fffaf2;
-  border-radius: 5px;
-  line-height: 1.5;
-  transition: transform .8s, height .8s;
-  overflow: hidden;
-  z-index: 2;
-}
-.envelope.open .letter {
-  height: 200px;
-  transform: translateY(-85px);
-}
-button {
-  border: 0;
-  border-radius: 25px;
-  padding: 13px 22px;
-  margin: 8px 4px;
-  font-size: 16px;
-  background: #b96878;
-  color: white;
-  cursor: pointer;
-}
-button:focus-visible {
-  outline: 3px solid #754b50;
-  outline-offset: 3px;
-}
-#fullLetter {
-  display: none;
-  text-align: left;
-  background: #fffaf5eF;
-  border: 1px solid #edc9c9;
-  border-radius: 18px;
-  padding: 24px;
-  margin: 30px auto;
-  line-height: 1.9;
-  white-space: pre-line;
-  animation: appear .7s ease;
-}
-#fullLetter.show { display: block; }
-@keyframes appear {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.heart {
-  position: fixed;
-  bottom: -35px;
-  pointer-events: none;
-  animation: floatUp 6s linear forwards;
-  z-index: 10;
-}
-@keyframes floatUp {
-  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
-}
-footer { font-size: 13px; opacity: .75; margin-top: 35px; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--coffee);font-family:'Be Vietnam Pro',sans-serif}
+button{font:inherit}
+.screen{display:none;min-height:100vh;width:100%;position:relative;padding:35px 18px;align-items:center;justify-content:center;animation:fade .7s ease}
+.screen.active{display:flex}
+.inner{width:min(780px,100%);margin:auto;position:relative;z-index:2}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;color:var(--green);font-weight:700}
+.serif{font-family:'Playfair Display',serif}
+.script{font-family:'Dancing Script',cursive}
+button{cursor:pointer}
+.primary{background:var(--green);color:white;border:0;border-radius:30px;padding:13px 23px;font-weight:700;box-shadow:0 6px 18px #667c692e}
+.primary:hover{background:var(--deep)}
+.actions{display:flex;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+.text-btn{background:transparent;border:0;color:var(--green);font-weight:700;padding:12px}
+.flower{position:absolute;font-size:40px;color:#a9b99f;opacity:.7}
+.flower.one{top:7%;left:7%}
+.flower.two{bottom:7%;right:7%}
+#welcome{text-align:center;overflow:hidden}
+.welcome-title{font:700 clamp(2rem,6vw,4.3rem)/1.2 'Playfair Display',serif;color:var(--green);animation:float 3s ease-in-out infinite}
+.welcome-sub{color:var(--coffee)}
+.cake-wrap{height:245px;width:280px;max-width:90vw;margin:12px auto;position:relative;display:grid;place-items:end center}
+.plate{position:absolute;bottom:12px;width:250px;height:18px;background:var(--butter);border:2px solid #d5c28b;border-radius:50%}
+.cake{position:relative;width:210px;height:128px;margin-bottom:25px;filter:drop-shadow(0 10px 10px #75604f20)}
+.cake-base{position:absolute;bottom:0;width:210px;height:78px;background:#e5c9a4;border:3px solid #c9a982;border-radius:14px 14px 22px 22px}
+.cake-base:before{content:"";position:absolute;top:17px;left:0;right:0;height:13px;background:#fff8e9;border-block:2px solid #d8c8ad}
+.cake-top{position:absolute;bottom:65px;left:13px;width:184px;height:43px;background:#fff7e8;border:3px solid #e1d0b5;border-radius:50% 50% 12px 12px / 65% 65% 12px 12px}
+.icing{position:absolute;top:19px;left:0;right:0;height:21px;background:#fff7e8;border-radius:0 0 10px 10px}
+.icing:before,.icing:after{content:"";position:absolute;top:-2px;width:18px;height:24px;background:#fff7e8;border-radius:0 0 12px 12px}
+.icing:before{left:29px}.icing:after{right:35px;height:28px}
+.candle{position:absolute;bottom:103px;width:10px;height:44px;background:repeating-linear-gradient(135deg,#667C69 0 5px,#f7f3ea 5px 10px);border-radius:4px 4px 1px 1px}
+.c1{left:72px}.c2{left:100px;height:52px}.c3{left:128px}
+.flame{position:absolute;top:-17px;left:1px;width:9px;height:15px;background:var(--butter);border-radius:80% 20% 70% 30%;transform:rotate(45deg);animation:flicker .9s infinite alternate}
+.welcome-next{position:absolute;right:20px;bottom:22px;animation:pulse 1.35s infinite}
+.welcome-next button{background:#dfe8d9;color:var(--deep);border:1px solid #b8c9b6;border-radius:30px;padding:13px 19px;font-weight:700}
+.intro-card,.letter-card,.closing-card{padding:clamp(26px,6vw,55px);box-shadow:0 18px 50px #4c40300f;position:relative}
+.intro-card{background:#ffffffc9;border:1px solid #e8dfcf;border-radius:8px 24px}
+.intro-card h2{font:600 clamp(2rem,5vw,3rem) 'Playfair Display',serif;color:var(--green);margin-top:12px}
+.intro-card p,.closing-card p{line-height:1.95}
+#letters{background:radial-gradient(ellipse at top left,#e8d9a82e,transparent 42%),var(--paper)}
+.letter-count{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;color:var(--green);font-size:.8rem}
+.letter-card{background:white;border:1px solid #e9dfce;border-radius:5px 22px;overflow:hidden}
+.letter-card:before{content:"";position:absolute;inset:12px;border:1px solid #667c692e;pointer-events:none}
+.letter-card h2{font:600 clamp(1.6rem,4.5vw,2.6rem)/1.25 'Playfair Display',serif;color:var(--green);margin:12px 0 24px;position:relative}
+.letter-body{line-height:1.95;font-size:1rem;position:relative}
+.letter-body p{margin:0 0 15px}
+.song-lines{border-left:3px solid var(--butter);margin:20px 0;padding:8px 0 8px 18px;font-family:'Playfair Display',serif;font-style:italic;color:var(--deep)}
+.icons{text-align:right;font-size:1.35rem;margin-top:22px}
+.music-panel{background:#f4f0e6;border:1px solid #e4dac6;border-radius:14px;padding:16px;margin:22px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.music-panel p{margin:0;font-size:.9rem}
+.progress{display:flex;justify-content:center;gap:7px;margin-top:20px}
+.progress span{width:7px;height:7px;border-radius:50%;background:#d8d0c0}
+.progress span.on{background:var(--green);width:20px;border-radius:20px}
+#closing{background:var(--green);color:var(--paper)}
+.closing-card{background:var(--paper);color:var(--coffee);border-radius:4px 24px}
+.closing-card h2{color:var(--green);font:700 clamp(1.9rem,5vw,3.1rem) 'Playfair Display',serif}
+.signature{font:600 2rem 'Dancing Script',cursive;color:var(--green);text-align:right;margin-top:26px}
+#finalGift{text-align:center}
+.gift{font-size:5rem;margin-bottom:18px}
+#finalGift h2{font:600 clamp(2rem,5vw,3.2rem) 'Playfair Display',serif;color:var(--green)}
+#finalGift p{line-height:1.9}
+.audio-box{margin:24px auto;padding:20px;max-width:500px;border-radius:18px;border:1px solid #e5dbc8;background:#ffffffbf}
+audio{width:100%;margin-top:12px}
+.heart-layer{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.heart{position:absolute;bottom:-35px;color:var(--green);opacity:0;animation:rise linear forwards}
+@keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes flicker{to{transform:rotate(48deg) scale(1.08)}}
+@keyframes pulse{50%{transform:scale(1.05)}}
+@keyframes rise{12%{opacity:.32}82%{opacity:.25}100%{transform:translateY(-110vh) rotate(28deg);opacity:0}}
+@media(max-width:520px){.screen{padding:24px 14px}.letter-card{padding:28px 23px}.welcome-next{right:16px;bottom:18px}.music-panel .primary{width:100%}}
 </style>
 </head>
 <body>
+<div class="heart-layer" id="heartLayer"></div>
 <main>
-  <p>🌷 Một món quà nhỏ dành riêng cho mẹ 🌷</p>
-  <h1>Chúc mừng sinh nhật mẹ!</h1>
-  <p class="subtitle">
-    Con có một điều muốn nói với mẹ.<br>
-    Mẹ hãy chạm vào chiếc phong bì nha!
-  </p>
+<section class="screen active" id="welcome">
+<span class="flower one">✿</span><span class="flower two">❀</span>
+<div class="inner">
+<div class="eyebrow">Một ngày thật đặc biệt</div>
+<div class="cake-wrap" role="img" aria-label="Bánh kem sinh nhật">
+<div class="plate"></div><div class="cake">
+<div class="cake-base"></div><div class="cake-top"><div class="icing"></div></div>
+<div class="candle c1"><span class="flame"></span></div>
+<div class="candle c2"><span class="flame"></span></div>
+<div class="candle c3"><span class="flame"></span></div>
+</div></div>
+<h1 class="welcome-title">HAPPY BIRTHDAY<br>MẸ YÊU 💗</h1>
+<p class="welcome-sub">Con có một món quà nhỏ dành riêng cho mẹ.</p>
+</div>
+<div class="welcome-next"><button data-go="giftIntro">Xem tiếp -&gt;</button></div>
+</section>
 
-  <div class="envelope-wrap" id="envelopeWrap"
-       role="button" tabindex="0"
-       aria-label="Chạm để mở phong bì">
-    <div class="envelope" id="envelope">
-      <div class="letter">Gửi mẹ yêu ❤️<br>Chạm để đọc thư nha...</div>
-    </div>
-  </div>
+<section class="screen" id="giftIntro">
+<span class="flower one">❀</span><span class="flower two">✿</span>
+<div class="inner intro-card">
+<div class="eyebrow">Một chút tâm tình</div>
+<h2>Gửi mẹ,</h2>
+<p>Con có một món quà nhỏ muốn mẹ khám phá.</p>
+<p>Không phải thứ gì to tát đâu, chỉ là một góc nhỏ con tự làm, gom góp một chút thời gian, một chút kỷ niệm và một vài điều con muốn nói với mẹ.</p>
+<p><strong>Mẹ mở nha!</strong></p>
+<div class="actions"><button class="primary" data-go="letters">MỞ MÓN QUÀ</button></div>
+</div>
+</section>
 
-  <button id="openLetter">Mở thư của con 💌</button>
-  <button id="musicButton">♫ Phát nhạc</button>
+<section class="screen" id="letters">
+<div class="inner">
+<div class="letter-count"><span>🌿 Trang nhật ký của con gái xa nhà</span><span id="letterNumber">Bức thư 1 / 5</span></div>
+<article class="letter-card">
+<div class="eyebrow" id="letterEyebrow"></div>
+<h2 id="letterTitle"></h2>
+<div class="letter-body" id="letterBody"></div>
+<div class="icons" id="letterIcons"></div>
+</article>
+<div class="progress" id="progress"></div>
+<div class="actions"><button class="primary" id="nextLetter">XEM TIẾP -&gt;</button></div>
+</div>
+</section>
 
-  <section id="fullLetter">
-    <h2>Gửi mẹ yêu thương nhất của con ❤️</h2>
-    Mẹ iu,
+<section class="screen" id="closing">
+<div class="inner closing-card">
+<div class="eyebrow">Một lời nhắn để mẹ giữ lại</div>
+<h2>HAPPY BIRTHDAY, MOM!</h2>
+<p>Vậy là mẹ đã khám phá hết món quà nhỏ của con rồi!</p>
+<p>Cảm ơn mẹ vì đã dành thời gian xem chiếc website mà con tự thiết kế.</p>
+<p>Con biết mình vẫn còn nhiều điều phải học, từ chuyện học hành, tự chăm sóc bản thân đến việc trở thành một người trưởng thành và có trách nhiệm hơn.</p>
+<p>Nhưng có một điều con luôn biết: dù sau này con đi đến đâu, nhà vẫn là nơi con luôn muốn trở về.</p>
+<p>Chúc mẹ một tuổi mới thật vui, thật khỏe và có nhiều thời gian dành cho chính mình.</p>
+<p>Con gái gửi mẹ một chiếc website nhỏ, còn lời chúc trực tiếp thì để dành đến ngày con về nhà nha!</p>
+<p class="signature">Thương mẹ nhiều.<br>— Con gái của mẹ —</p>
+<div class="actions"><button class="primary" data-go="finalGift">XEM TIẾP -&gt;</button></div>
+</div>
+</section>
 
-    Hôm nay là ngày thật đặc biệt, bởi vì đó là ngày mẹ đến với thế giới này.
-
-    Con không biết phải nói bao nhiêu lời mới đủ để cảm ơn mẹ vì tất cả những yêu thương, sự chăm sóc và những điều mẹ đã dành cho con.
-
-    Con chỉ mong mẹ luôn bình an, vui vẻ, mạnh khỏe và có thật nhiều ngày hạnh phúc. Mong rằng những điều tốt đẹp nhất sẽ luôn tìm đến mẹ, giống như cách mẹ đã luôn dành cho con những điều tốt đẹp.
-
-    Cảm ơn mẹ vì đã là mẹ của con.
-
-    Con yêu mẹ rất nhiều!
-
-    <div style="text-align:right">Con của mẹ 💗</div>
-  </section>
-
-  <footer>Được làm bằng tất cả tình yêu dành cho mẹ ♡</footer>
+<section class="screen" id="finalGift">
+<span class="flower one">✿</span><span class="flower two">❀</span>
+<div class="inner">
+<div class="gift">🎁</div>
+<div class="eyebrow">Món quà cuối cùng của ngày hôm nay</div>
+<h2>Một đoạn hát gửi mẹ</h2>
+<p>Con có hát một đoạn trong bài <strong>“Yêu Bền Bỉ”</strong> thay lời con muốn nói tặng mẹ, mẹ nghe nha!</p>
+<div class="audio-box">
+<div class="script" style="font-size:2rem;color:var(--green)">Dành riêng cho mẹ</div>
+<audio id="music2" controls preload="metadata"><source src="music2.mp3" type="audio/mpeg">Trình duyệt không hỗ trợ âm thanh.</audio>
+<p>Bản thu âm của con gái 💚</p>
+</div>
+<div class="actions"><button class="primary" id="restart">Xem lại từ đầu</button></div>
+</div>
+</section>
 </main>
 
-<audio id="music" loop preload="none" src="music.mp3"></audio>
+<audio id="music1" preload="none"><source src="music1.mp3" type="audio/mpeg"></audio>
 
 <script>
-const envelope = document.getElementById("envelope");
-const wrap = document.getElementById("envelopeWrap");
-const letter = document.getElementById("fullLetter");
-const music = document.getElementById("music");
-const musicButton = document.getElementById("musicButton");
+const screens=[...document.querySelectorAll('.screen')];
+const music1=document.getElementById('music1');
+const music2=document.getElementById('music2');
+const title=document.getElementById('letterTitle');
+const body=document.getElementById('letterBody');
+const eyebrow=document.getElementById('letterEyebrow');
+const icons=document.getElementById('letterIcons');
+const number=document.getElementById('letterNumber');
+const progress=document.getElementById('progress');
+const next=document.getElementById('nextLetter');
+let current=0;
 
-function openEnvelope() {
-  envelope.classList.add("open");
-  letter.classList.add("show");
-  makeHearts(12);
+const letters=[
+{title:'CHÚC MỪNG SINH NHẬT MẸ!',eyebrow:'Bức thư số 1 · Chúc mừng sinh nhật',icons:'🎂 🌷',html:`<p><strong>Happy birthday!</strong></p>
+<p>Năm nay con không ở nhà để trực tiếp chúc mừng mẹ, cũng chưa đủ điều kiện để tự tay chuẩn bị cho mẹ những món quà tặng có giá trị hiện kim nên con chỉ gom góp công sức tặng mẹ chút giá trị tinh thần thôi mẹ ơi! 😇</p>
+<p>Thế nên con làm chiếc website nhỏ này, mục đích là làm ra một thứ gì đó mà mẹ có thể giữ lại lâu dài.</p>
+<p>Con biết nó không sang trọng nhưng giá trị thì hơi bị quý đó nha! Con đã dành thời gian để làm từng chút một, với mong muốn mẹ có một ngày sinh nhật thật vui.</p>
+<p>Chúc mẹ tuổi mới luôn khỏe mạnh, vui vẻ, ăn ngon, ngủ ngon và có thêm thật nhiều thời gian dành cho những điều mẹ thích.</p>
+<p>Còn hôm nay, mẹ cứ tận hưởng sinh nhật của mình nhé. Việc nhà cứ để con Ngân nó làm 😚.</p>`},
+{title:'ĐIỀU CON NHẬN RA KHI ĐI HỌC XA NHÀ',eyebrow:'Bức thư số 2 · Nhớ bữa cơm nhà',icons:'🚌 🏫 🍚',html:`<p>Từ ngày đi học xa, con mới nhận ra có những điều trước đây mình xem là bình thường.</p>
+<p>Như chuyện về nhà là có cơm ăn, chuyện muốn kể gì thì có ba mẹ để kề, hay đơn giản là cuối ngày vẫn có một nơi để trở về.</p>
+<p>Bây giờ, có những hôm con nhớ nhà nhưng phải chờ đến cuối tuần, có khi còn phải chờ thêm vài tuần nữa mới được về.</p>
+<p>Con vẫn đang tập quen với cuộc sống đại học, tập tự lo cho bản thân và học cách trưởng thành.</p>
+<p>Nhưng dù đi học ở đâu, con vẫn thích nhất cảm giác được trở về nhà, ăn một bữa cơm cùng ba mẹ rồi kể đủ thứ chuyện trên đời.</p>
+<p>Hôm nay sinh nhật mẹ, nhưng hình như người nhận được món quà cũng là con, vì con có một gia đình để nhớ, có một nơi để trở về và vẫn còn có mẹ.</p>
+<div class="music-panel"><p><strong>🎵 Trễ Giờ Cơm</strong><br>Quang Hùng MasterD, Xuân Định K.Y, WEAN và Sơn.K</p><button class="primary" id="playMusic1">Nhấn để phát nhạc</button></div>
+<div class="song-lines">“Bàn chân cứ bước đi giữa đất trời<br>Vượt qua những chông gai<br>Có buồn, có vui, chỉ có ta.<br>Giờ đây nhớ lắm một bữa cơm nhà<br>Trọn vẹn điều quý giá là có mẹ, có cha, có chúng ta.”</div>`},
+{title:'CÓ MỘT ĐIỀU CON MUỐN GỬI VỀ NHÀ',eyebrow:'Bức thư số 3 · Từ nơi xa',icons:'🏡 🌿',html:`<p>Mẹ có biết không?</p>
+<p>Cuộc sống xa nhà cũng có rất nhiều điều thú vị. Con được gặp bạn mới, học những thứ mới và tự mình quyết định nhiều chuyện hơn trước.</p>
+<p>Nhưng đôi khi, con vẫn ước hôm nay có thể về nhà ăn cơm, kể ba mẹ nghe một chuyện linh tinh nào đó, nói xấu ai đó, rồi ngồi chơi thêm một lúc trước khi đi ngủ.</p>
+<p>Con gửi mẹ một lời chúc sinh nhật từ nơi xa. Khi nào về, con sẽ chúc mẹ trực tiếp thêm một lần nữa nha!</p>`},
+{title:'',eyebrow:'Bức thư số 4 · Những điều con đang cố gắng',icons:'🌱 💌',html:`<p>Con chưa có khả năng tặng mẹ những món quà đắt tiền, nhưng con hy vọng sau này mình có thể tự tay chuẩn bị cho mẹ nhiều điều hơn thế.</p>
+<p>Con gom góp hết tình cảm vào trang web này. Mẹ đừng chê món quà “0 đồng” này của con gái nha!</p>
+<p>Trước mắt, con sẽ cố gắng học hành, chăm sóc bản thân cho tốt và học cách sống có trách nhiệm hơn.</p>
+<p>Chúc mẹ có thật nhiều ngày vui, không chỉ riêng ngày sinh nhật. (Con làm mẹ buồn thì mẹ bỏ qua cho con nha 😚)</p>`},
+{title:'MỘT ĐIỀU CON CHƯA NÓI HẾT',eyebrow:'Bức thư số 5 · Gửi ba và mẹ',icons:'👨‍👩‍👧 🤍',html:`<p><strong>Gửi ba và mẹ,</strong></p>
+<p>Sinh nhật mẹ nên hôm nay con viết cho mẹ, nhưng con cũng muốn gửi lời cảm ơn đến ba.</p>
+<p>Cảm ơn ba mẹ vì đã luôn lo lắng cho con, từ những chuyện lớn đến những chuyện nhỏ mà đôi khi con còn chẳng để ý.</p>
+<p>Bây giờ đi học xa, con mới hiểu rằng để có được những ngày tháng vô tư như trước, ba mẹ đã phải lo lắng và cố gắng nhiều như thế nào.</p>
+<p>Con vẫn còn nhiều điều phải học, nhiều việc chưa làm tốt và chưa thể tự lo cho tất cả mọi thứ.</p>
+<p>Nhưng con đang cố gắng từng chút một.</p>
+<p>Con mong ba mẹ luôn khỏe mạnh, vui vẻ và dành thêm thời gian cho bản thân. Đừng lúc nào cũng chỉ lo cho con nhé!</p>
+<p>Và con cũng mong những năm sau, khi nhìn lại món quà nhỏ này, chúng ta vẫn có thể ngồi cạnh nhau, ăn một bữa cơm và kể nhau nghe những chuyện chẳng đầu chẳng cuối.</p>`}
+];
+
+function stopAudio(a){a.pause();try{a.currentTime=0}catch(e){}}
+function stopAll(){stopAudio(music1);stopAudio(music2)}
+function showScreen(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));window.scrollTo({top:0,behavior:'smooth'})}
+function renderLetter(i){
+ current=i;const item=letters[i];
+ title.textContent=item.title;title.style.display=item.title?'block':'none';
+ body.innerHTML=item.html;eyebrow.textContent=item.eyebrow;icons.textContent=item.icons;
+ number.textContent=`Bức thư ${i+1} / ${letters.length}`;
+ progress.innerHTML=letters.map((_,j)=>`<span class="${i===j?'on':''}"></span>`).join('');
+ const play=document.getElementById('playMusic1');
+ if(play)play.addEventListener('click',async()=>{
+  try{if(music1.paused){await music1.play();play.textContent='Tạm dừng nhạc'}else{music1.pause();play.textContent='Nhấn để phát nhạc'}}
+  catch(e){play.textContent='Không phát được — kiểm tra file nhạc'}
+ });
 }
-wrap.addEventListener("click", openEnvelope);
-wrap.addEventListener("keydown", event => {
-  if (event.key === "Enter" || event.key === " ") {
-    event.preventDefault();
-    openEnvelope();
-  }
+function goLetters(){stopAll();renderLetter(0);showScreen('letters')}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
+ const target=b.dataset.go;if(target==='letters')goLetters();else{stopAll();showScreen(target)}
+}));
+next.addEventListener('click',()=>{
+ if(current===1)stopAudio(music1);
+ if(current<letters.length-1)renderLetter(current+1);
+ else{stopAll();showScreen('closing')}
+ window.scrollTo({top:0,behavior:'smooth'});
 });
-document.getElementById("openLetter").addEventListener("click", openEnvelope);
+document.getElementById('restart').addEventListener('click',()=>{stopAll();showScreen('welcome')});
 
-function makeHearts(amount) {
-  for (let i = 0; i < amount; i++) {
-    const heart = document.createElement("span");
-    heart.className = "heart";
-    heart.textContent = ["♥", "♡", "💕", "💗"][Math.floor(Math.random()*4)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-    document.body.appendChild(heart);
-    heart.addEventListener("animationend", () => heart.remove());
-  }
+const layer=document.getElementById('heartLayer');
+function makeHeart(){
+ const h=document.createElement('span');h.className='heart';
+ h.textContent=Math.random()>.5?'♡':'♥';
+ h.style.left=(4+Math.random()*92)+'%';
+ h.style.fontSize=(12+Math.random()*12)+'px';
+ h.style.animationDuration=(10+Math.random()*8)+'s';
+ layer.appendChild(h);setTimeout(()=>h.remove(),19000);
 }
-setInterval(() => makeHearts(2), 1800);
-
-musicButton.addEventListener("click", async () => {
-  if (music.paused) {
-    try {
-      await music.play();
-      musicButton.textContent = "Ⅱ Tạm dừng nhạc";
-    } catch {
-      alert("Bạn hãy thêm tệp nhạc music.mp3 vào repository trước nhé.");
-    }
-  } else {
-    music.pause();
-    musicButton.textContent = "♫ Phát nhạc";
-  }
-});
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{if(Math.random()>.35)makeHeart()},2100);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){music1.pause();music2.pause()}});
+renderLetter(0);
 </script>
 </body>
 </html>
